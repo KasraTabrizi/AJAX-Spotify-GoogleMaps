@@ -3,7 +3,7 @@ const urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
 //const url = `https://api.spotify.com/v1/browse/featured-playlists?country=US&limit=2`;      
 //const urlAuth = `https://accounts.spotify.com/authorize?client_id=edb6db7c1c604795b872fe40255d52fc&response_type=code&redirect_uri=http%3A%2F%2F127.0.0.1:5500`;
 const spotifyKey = `BQCvMwYLYfIHhJPQYQEu2qYMeUVp4uLUcXh_25YnR6QhXBLkjfRRZsr09w4oVs14ekuEUM1HtkzBvQBJ2XBffwAiY9PoCW2tMaLCrRJKr5X-9XUsZFG2GBGTsO42eZluho3QJm0DMmEcdNYq0pSsidBbXrAXyjcRa77PtpBEQxJ_j4VIkmrVkDuVcpmzJDB3O5GgpZK0L8b5dqbMITGR1Wqr4I6HS23c01Hwb0SxtjSzV7DsFjZLmBmkfzOq5_QodOPVX6vqwGjOrA`;
-//const googleKey = `AIzaSyDO2IWbVuMT3jqqBFAgtV9TNijdisSDzf8`;
+const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 
 document.getElementById("button").addEventListener("click", () => {
     fetch(urlPlaylist, {
@@ -22,7 +22,7 @@ document.getElementById("button").addEventListener("click", () => {
 
 });
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w';
+mapboxgl.accessToken = mapboxKey;
 var map = new mapboxgl.Map({
     container: 'map', // container id
     style: 'mapbox://styles/mapbox/streets-v11',
