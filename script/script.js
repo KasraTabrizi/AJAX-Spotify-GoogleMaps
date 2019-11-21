@@ -192,7 +192,6 @@ map.on('click', function(e) {
                 // console.log(element.track.album.id);
                 // //get track duration
                 // console.log(element.track.duration_ms);
-
                 //add first row with three colums
                 let tr = document.createElement("TR");
                 let td1 = document.createElement("TD");
@@ -210,7 +209,7 @@ map.on('click', function(e) {
                 trackcontent = document.createTextNode(element.track.name);
                 td2.appendChild(trackcontent);
                 td2.classList.add("track-title");
-                trackcontent = document.createTextNode(element.track.duration_ms);
+                trackcontent = document.createTextNode(trackDuration(element.track.duration_ms));
                 td3.appendChild(trackcontent);
                 td3.classList.add("track-duration");
                 tr.appendChild(td1);
@@ -261,4 +260,10 @@ function refreshTablePlayList() {
     while (musicTable.firstChild) {
         musicTable.firstChild.remove();
     }
+}
+//convert track duraction which is in milliseconnds to minutes:seconds format like this => mm:ss
+function trackDuration(milliseconds) {
+    let minutes = Math.floor(milliseconds / 60000);
+    let seconds = ((milliseconds % 60000) / 1000).toFixed(0);
+    return `${minutes}:${(seconds < 10 ? '0' : '')}${seconds}`;
 }
