@@ -1,6 +1,6 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
-const spotifyKey = `BQDOf_dxTMXFBqg3MTQB_U4e2LPffhxxcVYmePh3KVnUTCmr3PW1SG8RSnWfOwWUlOy_euVD_GWi7GCmkBuqoic92cJBw41s9kO7ybQCrRIlFU4nGzIJh5A9Z__VNDOMJ96IUhDyAgGKSoGFqeAeYQMMHj7uAvE1Q7g`;
+const spotifyKey = `BQB4WCwBmntc30vLyBV46xwPGsq2bMC3uwiGMwIB-4HrvE3DirfV3hoAJbme4ukT2VE03Jnm9S7XLWYMS8VJo6Dqta_kgiQb29bfjrwbK0W0jo-PhmHQIyNc4B-9NrjBzvqlSKJQBPDwdtjbvha1jKX6hiQc1_YG93EtCjCXNLRJlE_7uPk9sXY30VYEFqmN7araWB1tpGCv3f_pFaI1ymwNjbYGp0byNgnfJwfs9PfeOR-6911M3pJe8U04HCfAAB_PTETCu8YurA`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 
 window.onSpotifyWebPlaybackSDKReady = () => {
@@ -173,6 +173,23 @@ map.on('click', function(e) {
         .then(res => res.json())
         .then(musicList => {
             console.log(musicList);
+
+            //Get image of the playlist
+            console.log(musicList.images[0].url);
+            //show all 50 tracks
+            const allTracks = musicList.tracks.items;
+            allTracks.forEach(element => {
+                //get track name
+                console.log(element.track.album.name);
+                //get artist name
+                console.log(element.track.album.artists[0].name);
+                //get track id
+                console.log(element.track.album.id);
+                //get track duration
+                console.log(element.track.duration_ms);
+
+                let
+            });
         });
 
 });
@@ -190,3 +207,7 @@ function getCountryId(countryList, selectedCountry) {
 function createPlaylistTable() {
 
 }
+
+// function wrapTitle(tagName, className, content) {
+
+// }
