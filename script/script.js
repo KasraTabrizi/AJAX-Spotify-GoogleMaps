@@ -148,10 +148,8 @@ map.on('load', function() {
 map.on('click', function(e) {
 
     //remove every child in the table to refresh the list
-    let musicTable = document.getElementById("playlist-table");
-    while (musicTable.firstChild) {
-        musicTable.firstChild.remove();
-    }
+    refreshTablePlayList();
+
     var features = map.queryRenderedFeatures(e.point, {
         layers: ['states-layer']
     });
@@ -252,3 +250,10 @@ function createPlaylistTable() {
 // function wrapTitle(tagName, className, content) {
 
 // }
+
+function refreshTablePlayList() {
+    let musicTable = document.getElementById("playlist-table");
+    while (musicTable.firstChild) {
+        musicTable.firstChild.remove();
+    }
+}
