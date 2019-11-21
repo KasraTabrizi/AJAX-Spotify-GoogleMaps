@@ -1,6 +1,6 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
-const spotifyKey = `BQDxztLljgrSC1ADQyt0Gns_YTdqTDstTBVXg1O2LNcMO6t952HUsQ1Bxy0wBNDyI-PmJ9hhBAbzlSBzsvX_dJnZB44D4WG0n7A2ZoCJwtPGfXRmWv29-Cbxd7Qm6A5QOtofOCZHUU8RIaAwSuSGp_39WqR7WV12LcU`;
+const spotifyKey = `BQDbCBIEuQ1URRXK_pShGYQxZsFxiDhXUDChq4Tf2F9DPpVeU3Ca4k7kHQ5-d6zh_514HqJ6Sq8ycI6ExeIMzIqAZSSd3prqTdsylzq8kN6f8wGzLKlty8S_qXol14GGekZU_hO95AGwmtqxaCQ8kBXK69wbq2Ye_0E`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 
 window.onSpotifyWebPlaybackSDKReady = () => {
@@ -176,64 +176,11 @@ map.on('click', function(e) {
         .then(res => res.json())
         .then(musicList => {
             console.log(musicList);
-
             //Display image of the playlist
-            displayPlayListImage("playlist-image");
+            displayPlayListImage("playlist-image", musicList);
             //show all 50 tracks
             const allTracks = musicList.tracks.items;
-            allTracks.forEach(element => {
-                // //get track name
-                // console.log(element.track.name);
-                // //get album name
-                // console.log(element.track.album.name);
-                // //get artist name
-                // console.log(element.track.album.artists[0].name);
-                // //get track id
-                // console.log(element.track.album.id);
-                // //get track duration
-                // console.log(element.track.duration_ms);
-                //add first row with three colums
-                let tr = document.createElement("TR");
-                let td1 = document.createElement("TD");
-                let td2 = document.createElement("TD");
-                let td3 = document.createElement("TD");
-                let playIcon = document.createElement("img");
-                playIcon.src = "https://img.icons8.com/material-rounded/24/000000/play.png";
-                let stopIcon = document.createElement("img");
-                stopIcon.src = "https://img.icons8.com/material-rounded/24/000000/stop.png";
-                // let trackcontent = document.createTextNode(`play stop images`);
-                // td1.appendChild(trackcontent);
-                td1.appendChild(playIcon);
-                td1.appendChild(stopIcon);
-                td1.classList.add("playstop-button");
-                trackcontent = document.createTextNode(element.track.name);
-                td2.appendChild(trackcontent);
-                td2.classList.add("track-title");
-                trackcontent = document.createTextNode(trackDuration(element.track.duration_ms));
-                td3.appendChild(trackcontent);
-                td3.classList.add("track-duration");
-                tr.appendChild(td1);
-                tr.appendChild(td2);
-                tr.appendChild(td3);
-                document.getElementById("playlist-table").appendChild(tr);
-
-                //add second row with three colums
-                let tr1 = document.createElement("TR");
-                td1 = document.createElement("TD");
-                td2 = document.createElement("TD");
-                td3 = document.createElement("TD");
-                trackcontent = document.createTextNode(` `);
-                td1.appendChild(trackcontent);
-                trackcontent = document.createTextNode(`${element.track.album.artists[0].name} - ${element.track.album.name}`);
-                td2.appendChild(trackcontent);
-                td2.classList.add("artist-name");
-                trackcontent = document.createTextNode(` `);
-                td3.appendChild(trackcontent);
-                tr1.appendChild(td1);
-                tr1.appendChild(td2);
-                tr1.appendChild(td3);
-                document.getElementById("playlist-table").appendChild(tr1);
-            });
+            createPlaylistTable(allTracks);
         });
 });
 
@@ -247,14 +194,66 @@ function getCountryId(countryList, selectedCountry) {
 }
 
 //function that creates a table for the playlist with the track name, artist name, duration, play and pause button.
-function createPlaylistTable() {
+function createPlaylistTable(allTracks) {
+    allTracks.forEach(element => {
+        // //get track name
+        // console.log(element.track.name);
+        // //get album name
+        // console.log(element.track.album.name);
+        // //get artist name
+        // console.log(element.track.album.artists[0].name);
+        // //get track id
+        // console.log(element.track.album.id);
+        // //get track duration
+        // console.log(element.track.duration_ms);
+        //add first row with three colums
+        let tr = document.createElement("TR");
+        let td1 = document.createElement("TD");
+        let td2 = document.createElement("TD");
+        let td3 = document.createElement("TD");
+        let playIcon = document.createElement("img");
+        playIcon.src = "https://img.icons8.com/material-rounded/24/000000/play.png";
+        let stopIcon = document.createElement("img");
+        stopIcon.src = "https://img.icons8.com/material-rounded/24/000000/stop.png";
+        // let trackcontent = document.createTextNode(`play stop images`);
+        // td1.appendChild(trackcontent);
+        td1.appendChild(playIcon);
+        td1.appendChild(stopIcon);
+        td1.classList.add("playstop-button");
+        trackcontent = document.createTextNode(element.track.name);
+        td2.appendChild(trackcontent);
+        td2.classList.add("track-title");
+        trackcontent = document.createTextNode(trackDuration(element.track.duration_ms));
+        td3.appendChild(trackcontent);
+        td3.classList.add("track-duration");
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        document.getElementById("playlist-table").appendChild(tr);
 
+        //add second row with three colums
+        let tr1 = document.createElement("TR");
+        td1 = document.createElement("TD");
+        td2 = document.createElement("TD");
+        td3 = document.createElement("TD");
+        trackcontent = document.createTextNode(` `);
+        td1.appendChild(trackcontent);
+        trackcontent = document.createTextNode(`${element.track.album.artists[0].name} - ${element.track.album.name}`);
+        td2.appendChild(trackcontent);
+        td2.classList.add("artist-name");
+        trackcontent = document.createTextNode(` `);
+        td3.appendChild(trackcontent);
+        tr1.appendChild(td1);
+        tr1.appendChild(td2);
+        tr1.appendChild(td3);
+        document.getElementById("playlist-table").appendChild(tr1);
+    });
 }
 
 // function wrapTitle(tagName, className, content) {
 
 // }
-
+//Refresh Table of Playlist everytime you press a country on the map
 function refreshTablePlayList() {
     let musicTable = document.getElementById("playlist-table");
     while (musicTable.firstChild) {
@@ -269,7 +268,7 @@ function trackDuration(milliseconds) {
 }
 
 //fetch image of top 50 playlist and display it
-function displayPlayListImage(tagElement) {
+function displayPlayListImage(tagElement, musicList) {
     let playlistImage = document.getElementById(tagElement);
     playlistImage.childNodes[0].src = musicList.images[0].url;
 }

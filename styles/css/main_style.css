@@ -20,6 +20,9 @@ body {
   border: 1px solid black;
   overflow: scroll;
 }
+#playlist-container #playlist-image {
+  text-align: center;
+}
 
 #playlist-table {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
