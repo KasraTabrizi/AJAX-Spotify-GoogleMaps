@@ -27,4 +27,33 @@ body {
     border: 1px solid black;
     //background-color: grey;
     //border-radius: 20px;
+    overflow: scroll;
+}
+
+#playlist-table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#playlist-table td,
+#playlist-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#playlist-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#playlist-table tr:hover {
+    background-color: #ddd;
+}
+
+#playlist-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
 }

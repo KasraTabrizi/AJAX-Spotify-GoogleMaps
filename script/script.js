@@ -1,6 +1,6 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
-const spotifyKey = `BQB4WCwBmntc30vLyBV46xwPGsq2bMC3uwiGMwIB-4HrvE3DirfV3hoAJbme4ukT2VE03Jnm9S7XLWYMS8VJo6Dqta_kgiQb29bfjrwbK0W0jo-PhmHQIyNc4B-9NrjBzvqlSKJQBPDwdtjbvha1jKX6hiQc1_YG93EtCjCXNLRJlE_7uPk9sXY30VYEFqmN7araWB1tpGCv3f_pFaI1ymwNjbYGp0byNgnfJwfs9PfeOR-6911M3pJe8U04HCfAAB_PTETCu8YurA`;
+const spotifyKey = `BQDxztLljgrSC1ADQyt0Gns_YTdqTDstTBVXg1O2LNcMO6t952HUsQ1Bxy0wBNDyI-PmJ9hhBAbzlSBzsvX_dJnZB44D4WG0n7A2ZoCJwtPGfXRmWv29-Cbxd7Qm6A5QOtofOCZHUU8RIaAwSuSGp_39WqR7WV12LcU`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 
 window.onSpotifyWebPlaybackSDKReady = () => {
@@ -180,6 +180,8 @@ map.on('click', function(e) {
             const allTracks = musicList.tracks.items;
             allTracks.forEach(element => {
                 //get track name
+                console.log(element.track.name);
+                //get album name
                 console.log(element.track.album.name);
                 //get artist name
                 console.log(element.track.album.artists[0].name);
@@ -188,7 +190,39 @@ map.on('click', function(e) {
                 //get track duration
                 console.log(element.track.duration_ms);
 
-                let
+                let tr = document.createElement("TR");
+                let tr1 = document.createElement("TR");
+                let td1 = document.createElement("TD");
+                let td2 = document.createElement("TD");
+                let td3 = document.createElement("TD");
+                let trackcontent = document.createTextNode(`play stop images`);
+                td1.appendChild(trackcontent);
+                td1.classList.add("playstop-button");
+                trackcontent = document.createTextNode(element.track.name);
+                td2.appendChild(trackcontent);
+                td2.classList.add("track-title");
+                trackcontent = document.createTextNode(element.track.duration_ms);
+                td3.appendChild(trackcontent);
+                td3.classList.add("track-duration");
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                document.getElementById("playlist-table").appendChild(tr);
+
+                td1 = document.createElement("TD");
+                td2 = document.createElement("TD");
+                td3 = document.createElement("TD");
+                trackcontent = document.createTextNode(` `);
+                td1.appendChild(trackcontent);
+                trackcontent = document.createTextNode(`${element.track.album.artists[0].name} - ${element.track.album.name}`);
+                td2.appendChild(trackcontent);
+                td2.classList.add("artist-name");
+                trackcontent = document.createTextNode(` `);
+                td3.appendChild(trackcontent);
+                tr1.appendChild(td1);
+                tr1.appendChild(td2);
+                tr1.appendChild(td3);
+                document.getElementById("playlist-table").appendChild(tr1);
             });
         });
 
