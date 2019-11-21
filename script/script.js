@@ -198,8 +198,14 @@ map.on('click', function(e) {
                 let td1 = document.createElement("TD");
                 let td2 = document.createElement("TD");
                 let td3 = document.createElement("TD");
-                let trackcontent = document.createTextNode(`play stop images`);
-                td1.appendChild(trackcontent);
+                let playIcon = document.createElement("img");
+                playIcon.src = "https://img.icons8.com/material-rounded/24/000000/play.png";
+                let stopIcon = document.createElement("img");
+                stopIcon.src = "https://img.icons8.com/material-rounded/24/000000/stop.png";
+                // let trackcontent = document.createTextNode(`play stop images`);
+                // td1.appendChild(trackcontent);
+                td1.appendChild(playIcon);
+                td1.appendChild(stopIcon);
                 td1.classList.add("playstop-button");
                 trackcontent = document.createTextNode(element.track.name);
                 td2.appendChild(trackcontent);
@@ -230,7 +236,6 @@ map.on('click', function(e) {
                 document.getElementById("playlist-table").appendChild(tr1);
             });
         });
-
 });
 
 //return the country spotify ID by passing the countrylist array and the selected country fetched from the mapbox API
