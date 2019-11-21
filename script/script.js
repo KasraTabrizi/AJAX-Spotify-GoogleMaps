@@ -185,3 +185,8 @@ function getCountryId(countryList, selectedCountry) {
         }
     }
 }
+
+//function that creates a table for the playlist with the track name, artist name, duration, play and pause button.
+function createPlaylistTable() {
+
+}
