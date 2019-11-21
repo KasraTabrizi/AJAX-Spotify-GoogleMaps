@@ -4,14 +4,20 @@ body {
 }
 
 #wrapper {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
+  display: flex;
 }
 
 #map {
-  position: relative;
-  width: 80%;
-  height: 500px;
+  width: 50%;
+  height: 100vh;
+}
+
+#playlist-container {
+  width: 50%;
+  height: 100vh;
+  border: 1px solid black;
 }
 
 /*# sourceMappingURL=main_style.css.map */

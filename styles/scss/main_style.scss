@@ -4,13 +4,27 @@ body {
 }
 
 #wrapper {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
+    display: flex;
 }
 
 #map {
-    position: relative;
-    width: 80%;
-    height: 500px;
-    //border-radius: 50%;
+    //position: absolute;
+    width: 50%;
+    height: 100vh;
+    //z-index: 0;
+    //top: 150px;
+    //border-radius: 20px;
+}
+
+#playlist-container {
+    //position: absolute;
+    //z-index: 20;
+    width: 50%;
+    height: 100vh;
+    //left: 900px;
+    border: 1px solid black;
+    //background-color: grey;
+    //border-radius: 20px;
 }
