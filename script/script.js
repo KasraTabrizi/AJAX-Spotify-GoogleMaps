@@ -177,8 +177,8 @@ map.on('click', function(e) {
         .then(musicList => {
             console.log(musicList);
 
-            //Get image of the playlist
-            console.log(musicList.images[0].url);
+            //Display image of the playlist
+            displayPlayListImage("playlist-image");
             //show all 50 tracks
             const allTracks = musicList.tracks.items;
             allTracks.forEach(element => {
@@ -266,4 +266,10 @@ function trackDuration(milliseconds) {
     let minutes = Math.floor(milliseconds / 60000);
     let seconds = ((milliseconds % 60000) / 1000).toFixed(0);
     return `${minutes}:${(seconds < 10 ? '0' : '')}${seconds}`;
+}
+
+//fetch image of top 50 playlist and display it
+function displayPlayListImage(tagElement) {
+    let playlistImage = document.getElementById(tagElement);
+    playlistImage.childNodes[0].src = musicList.images[0].url;
 }
