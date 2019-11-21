@@ -147,6 +147,11 @@ map.on('load', function() {
 //it will show the country you have clicked on the map
 map.on('click', function(e) {
 
+    //remove every child in the table to refresh the list
+    let musicTable = document.getElementById("playlist-table");
+    while (musicTable.firstChild) {
+        musicTable.firstChild.remove();
+    }
     var features = map.queryRenderedFeatures(e.point, {
         layers: ['states-layer']
     });
@@ -179,19 +184,19 @@ map.on('click', function(e) {
             //show all 50 tracks
             const allTracks = musicList.tracks.items;
             allTracks.forEach(element => {
-                //get track name
-                console.log(element.track.name);
-                //get album name
-                console.log(element.track.album.name);
-                //get artist name
-                console.log(element.track.album.artists[0].name);
-                //get track id
-                console.log(element.track.album.id);
-                //get track duration
-                console.log(element.track.duration_ms);
+                // //get track name
+                // console.log(element.track.name);
+                // //get album name
+                // console.log(element.track.album.name);
+                // //get artist name
+                // console.log(element.track.album.artists[0].name);
+                // //get track id
+                // console.log(element.track.album.id);
+                // //get track duration
+                // console.log(element.track.duration_ms);
 
+                //add first row with three colums
                 let tr = document.createElement("TR");
-                let tr1 = document.createElement("TR");
                 let td1 = document.createElement("TD");
                 let td2 = document.createElement("TD");
                 let td3 = document.createElement("TD");
@@ -209,6 +214,8 @@ map.on('click', function(e) {
                 tr.appendChild(td3);
                 document.getElementById("playlist-table").appendChild(tr);
 
+                //add second row with three colums
+                let tr1 = document.createElement("TR");
                 td1 = document.createElement("TD");
                 td2 = document.createElement("TD");
                 td3 = document.createElement("TD");
