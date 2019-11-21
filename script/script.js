@@ -1,26 +1,24 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
-//const url = `https://api.spotify.com/v1/browse/featured-playlists?country=US&limit=2`;      
-//const urlAuth = `https://accounts.spotify.com/authorize?client_id=edb6db7c1c604795b872fe40255d52fc&response_type=code&redirect_uri=http%3A%2F%2F127.0.0.1:5500`;
 const spotifyKey = `BQC9MGgxpyeiIbKC1hTk8VxlsxVcxfDJV57hOD6tL7QNYAmn3ZFDrfqykTsfU4AhhBT_QeAQgRGSzGkepdKi-xnlGwEXv9wjvr-daIxS75Ihd2CeTQitd-66KtyKhvOrno1dSq-CRr20EfP2tB-h6qFbG78qoAnmGHXzy_Fwz2asgbALN1pWnxKiuoM0B-OUmN4_rVzRPKedPu9awHxP7P2RJUKRbZg7sBwxajisAA0GUoxbqwBn_NUpo3WUd6Nz-lt_k64uFtriug`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 
-document.getElementById("button").addEventListener("click", () => {
-    fetch(urlPlaylist, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${spotifyKey}`,
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            credentials: "same-origin"
-        })
-        .then(res => res.json())
-        .then(musicList => {
-            console.log(musicList);
-        });
+// document.getElementById("button").addEventListener("click", () => {
+//     fetch(urlPlaylist, {
+//             method: "GET",
+//             headers: {
+//                 "Authorization": `Bearer ${spotifyKey}`,
+//                 "Accept": "application/json",
+//                 "Content-Type": "application/json"
+//             },
+//             credentials: "same-origin"
+//         })
+//         .then(res => res.json())
+//         .then(musicList => {
+//             console.log(musicList);
+//         });
 
-});
+// });
 
 mapboxgl.accessToken = mapboxKey;
 var map = new mapboxgl.Map({
