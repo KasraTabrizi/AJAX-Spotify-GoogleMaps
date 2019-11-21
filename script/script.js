@@ -1,6 +1,6 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
-const spotifyKey = `BQC9MGgxpyeiIbKC1hTk8VxlsxVcxfDJV57hOD6tL7QNYAmn3ZFDrfqykTsfU4AhhBT_QeAQgRGSzGkepdKi-xnlGwEXv9wjvr-daIxS75Ihd2CeTQitd-66KtyKhvOrno1dSq-CRr20EfP2tB-h6qFbG78qoAnmGHXzy_Fwz2asgbALN1pWnxKiuoM0B-OUmN4_rVzRPKedPu9awHxP7P2RJUKRbZg7sBwxajisAA0GUoxbqwBn_NUpo3WUd6Nz-lt_k64uFtriug`;
+const spotifyKey = `BQDAxxkdlEw8HLxSqzU5QOWJdx15Uo8censrvgo7FSAF1ChvT5dNYPSR2hAYsKoXE5dVbhRwZMJGbYXB9PV3viJHocIFbC7hwTpPy0ZLne8tuFmhPV10MPeZwBlFhHCzZzfnCapvmGV_EGUuV-P5B4rSppEgUt9Ewok`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 
 // document.getElementById("button").addEventListener("click", () => {
