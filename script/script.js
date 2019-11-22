@@ -1,7 +1,7 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
 let playListId = [];
-const spotifyKey = `BQA9TC6-AUVF_v8DcjXRUlKR_MOx_XsDIZ2KPdbxPR7pjZujDNyglta0QGJW_MCRTwzZQfcHCXI3gUzNrRigvfqSLzMzXOmbz32rFF2daJxVXF1w4E6nZNtn5uQULfejMzlJVHI-k50pox9RW8kTs6F3vPbMAS7Af9E`;
+const spotifyKey = `BQDB5NXf1otthwEYtt5QdM8OTjh3IzqtAVK9od7IHgUpjB3gcK5YaMLgvCDYMWd0IxCaidqE44GVqRgud_x_BLQt1A0mEYecnD9QYvLEC3p0Afymph4UIIZLJvjORtaeb9L2jz8IOUIGyam9y0wUk00gAK6LssFIgco`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 mapboxgl.accessToken = mapboxKey;
 
@@ -161,13 +161,13 @@ function trackDuration(milliseconds) {
 function displayPlayListImage(tagElement, musicList) {
     let playlistImage = document.getElementById(tagElement);
     playlistImage.childNodes[0].src = musicList.images[0].url;
-    var vibrant = new Vibrant(musicList.images[0].url);
-    var swatches = vibrant.swatches();
-    for (var swatch in swatches) {
-        if (swatches.hasOwnProperty(swatch) && swatches[swatch]) {
-            console.log(swatch, swatches[swatch].getHex());
-        }
-    }
+    // var vibrant = new Vibrant(musicList.images[0].url);
+    // var swatches = vibrant.swatches();
+    // for (var swatch in swatches) {
+    //     if (swatches.hasOwnProperty(swatch) && swatches[swatch]) {
+    //         console.log(swatch, swatches[swatch].getHex());
+    //     }
+    // }
 }
 
 const onSpotifyWebPlaybackSDKReady = () => {
