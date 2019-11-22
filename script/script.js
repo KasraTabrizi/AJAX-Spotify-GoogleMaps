@@ -1,7 +1,7 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
 let playListId = [];
-const spotifyKey = `BQDB5NXf1otthwEYtt5QdM8OTjh3IzqtAVK9od7IHgUpjB3gcK5YaMLgvCDYMWd0IxCaidqE44GVqRgud_x_BLQt1A0mEYecnD9QYvLEC3p0Afymph4UIIZLJvjORtaeb9L2jz8IOUIGyam9y0wUk00gAK6LssFIgco`;
+const spotifyKey = `BQBjl0sjhU6T-M9eRSeGwX-PGxcA8eGeD3JdgBgTDFy1tnKhzPxZkmT4BUS_sUrdsXgldILoWFs2IsreGCcAnkXklkUFnBIzf_Gut5XSE8C4rE_3HP6K3Z0L4IPeChXkVnudv-P_8WtVMAwm7UNqMq2euWOo-wwTHWI`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 mapboxgl.accessToken = mapboxKey;
 
@@ -77,6 +77,7 @@ map.on('click', function(e) {
 function getCountryId(countryList, selectedCountry) {
     for (let i = 0; i < countryList.length; i++) {
         if (selectedCountry == countryList[i].country) {
+            // console.log(countryList[i].country);
             return countryList[i].id;
         }
     }
