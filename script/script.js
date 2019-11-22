@@ -1,7 +1,7 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
 let playListId = [];
-const spotifyKey = `BQAKPocxe_8XqdxU6SjVzMiJd3uQOaORnNuXLrKH_yQ9daVsSZkNAr1Y5FKpFbgA666qLpn6CuUxOpYQOIoXV_48amA8uftB7WPBd2RuXEnOZ611ngJ29P2RsHNASu1KJsnTcALvy4LpJFDq3JpiHWGPtBx1dKikAoc`;
+const spotifyKey = `BQA9TC6-AUVF_v8DcjXRUlKR_MOx_XsDIZ2KPdbxPR7pjZujDNyglta0QGJW_MCRTwzZQfcHCXI3gUzNrRigvfqSLzMzXOmbz32rFF2daJxVXF1w4E6nZNtn5uQULfejMzlJVHI-k50pox9RW8kTs6F3vPbMAS7Af9E`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 mapboxgl.accessToken = mapboxKey;
 
@@ -103,8 +103,10 @@ function createPlaylistTable(allTracks) {
         let td2 = document.createElement("TD");
         let td3 = document.createElement("TD");
         let playIcon = document.createElement("img");
+        playIcon.classList.add("playIcon");
         playIcon.src = "https://img.icons8.com/material-rounded/24/000000/play.png";
         let stopIcon = document.createElement("img");
+        stopIcon.classList.add("stopIcon");
         stopIcon.src = "https://img.icons8.com/material-rounded/24/000000/stop.png";
         // let trackcontent = document.createTextNode(`play stop images`);
         // td1.appendChild(trackcontent);
@@ -159,6 +161,13 @@ function trackDuration(milliseconds) {
 function displayPlayListImage(tagElement, musicList) {
     let playlistImage = document.getElementById(tagElement);
     playlistImage.childNodes[0].src = musicList.images[0].url;
+    var vibrant = new Vibrant(musicList.images[0].url);
+    var swatches = vibrant.swatches();
+    for (var swatch in swatches) {
+        if (swatches.hasOwnProperty(swatch) && swatches[swatch]) {
+            console.log(swatch, swatches[swatch].getHex());
+        }
+    }
 }
 
 const onSpotifyWebPlaybackSDKReady = () => {
@@ -255,15 +264,10 @@ const onSpotifyWebPlaybackSDKReady = () => {
             });
         };
 
-        let playButton = document.querySelectorAll(".playstop-button");
-        for (let i = 0; i < playButton.length; i++) {
-            playButton[i].addEventListener('click', function() {
-                play({
-                    playerInstance: player,
-                    spotify_uri: `spotify:track:${playListId[i]}`,
-                });
-            });
-        }
+        //link the play and pause funcionality of spotify to the play and stop buttons
+        linkPlayToButtons(player, play);
+        linkStopToButtons(player, pause);
+
         // document.getElementsByClassName("playstop-button")[0].addEventListener("click", () => {
         //     console.log("clicked");
         //     play({
@@ -286,3 +290,27 @@ const onSpotifyWebPlaybackSDKReady = () => {
     player.connect();
 
 };
+
+function linkPlayToButtons(player, play) {
+    let playButton = document.querySelectorAll(".playIcon");
+    for (let i = 0; i < playButton.length; i++) {
+        playButton[i].addEventListener('click', function() {
+            play({
+                playerInstance: player,
+                spotify_uri: `spotify:track:${playListId[i]}`,
+            });
+        });
+    }
+}
+
+function linkStopToButtons(player, pause) {
+    let stopButton = document.querySelectorAll(".stopIcon");
+    for (let i = 0; i < stopButton.length; i++) {
+        stopButton[i].addEventListener('click', function() {
+            pause({
+                playerInstance: player,
+                spotify_uri: `spotify:track:${playListId[i]}`,
+            });
+        });
+    }
+}
