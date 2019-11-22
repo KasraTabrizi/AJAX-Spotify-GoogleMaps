@@ -1,9 +1,167 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
-const spotifyKey = `BQDbCBIEuQ1URRXK_pShGYQxZsFxiDhXUDChq4Tf2F9DPpVeU3Ca4k7kHQ5-d6zh_514HqJ6Sq8ycI6ExeIMzIqAZSSd3prqTdsylzq8kN6f8wGzLKlty8S_qXol14GGekZU_hO95AGwmtqxaCQ8kBXK69wbq2Ye_0E`;
+let playListId = [];
+const spotifyKey = `BQAKPocxe_8XqdxU6SjVzMiJd3uQOaORnNuXLrKH_yQ9daVsSZkNAr1Y5FKpFbgA666qLpn6CuUxOpYQOIoXV_48amA8uftB7WPBd2RuXEnOZ611ngJ29P2RsHNASu1KJsnTcALvy4LpJFDq3JpiHWGPtBx1dKikAoc`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
+mapboxgl.accessToken = mapboxKey;
 
-window.onSpotifyWebPlaybackSDKReady = () => {
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [0, 40], // starting position
+    zoom: 2 // starting zoom
+});
+
+map.on('load', function() {
+    // Add a GeoJSON source containing the state polygons.
+    map.addSource('states', {
+        'type': 'geojson',
+        'data': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson'
+    });
+
+    // Add a layer showing the state polygons.
+    map.addLayer({
+        'id': 'states-layer',
+        'type': 'fill',
+        'source': 'states',
+        'paint': {
+            'fill-color': 'rgba(255, 255, 255, 0.1)',
+            'fill-outline-color': 'rgba(200, 100, 240, 1)'
+        }
+    });
+});
+//it will show the country you have clicked on the map
+map.on('click', function(e) {
+
+    //remove every child in the table to refresh the list
+    refreshTablePlayList();
+
+    var features = map.queryRenderedFeatures(e.point, {
+        layers: ['states-layer']
+    });
+    if (!features.length) {
+        return;
+    }
+    var feature = features[0];
+
+    console.log(feature.properties.name);
+    console.log(getCountryId(countryList, feature.properties.name));
+
+    countryID = getCountryId(countryList, feature.properties.name);
+    urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
+
+    //Fetch the top 50 playlist from the selected country fro; the spotify API
+    fetch(urlPlaylist, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${spotifyKey}`,
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            credentials: "same-origin"
+        })
+        .then(res => res.json())
+        .then(musicList => {
+            console.log(musicList);
+            //Display image of the playlist
+            displayPlayListImage("playlist-image", musicList);
+            //show all 50 tracks
+            const allTracks = musicList.tracks.items;
+            createPlaylistTable(allTracks);
+            console.log(playListId);
+        })
+        .then(onSpotifyWebPlaybackSDKReady());
+});
+
+//return the country spotify ID by passing the countrylist array and the selected country fetched from the mapbox API
+function getCountryId(countryList, selectedCountry) {
+    for (let i = 0; i < countryList.length; i++) {
+        if (selectedCountry == countryList[i].country) {
+            return countryList[i].id;
+        }
+    }
+}
+
+//function that creates a table for the playlist with the track name, artist name, duration, play and pause button.
+function createPlaylistTable(allTracks) {
+    playListId = [];
+    allTracks.forEach(element => {
+        // //get track name
+        // console.log(element.track.name);
+        // //get album name
+        // console.log(element.track.album.name);
+        // //get artist name
+        // console.log(element.track.album.artists[0].name);
+        // //get track id
+        // console.log(element.track.album.id);
+        playListId.push(element.track.id);
+        // //get track duration
+        // console.log(element.track.duration_ms);
+        //add first row with three colums
+        let tr = document.createElement("TR");
+        let td1 = document.createElement("TD");
+        let td2 = document.createElement("TD");
+        let td3 = document.createElement("TD");
+        let playIcon = document.createElement("img");
+        playIcon.src = "https://img.icons8.com/material-rounded/24/000000/play.png";
+        let stopIcon = document.createElement("img");
+        stopIcon.src = "https://img.icons8.com/material-rounded/24/000000/stop.png";
+        // let trackcontent = document.createTextNode(`play stop images`);
+        // td1.appendChild(trackcontent);
+        td1.appendChild(playIcon);
+        td1.appendChild(stopIcon);
+        td1.classList.add("playstop-button");
+        trackcontent = document.createTextNode(element.track.name);
+        td2.appendChild(trackcontent);
+        td2.classList.add("track-title");
+        trackcontent = document.createTextNode(trackDuration(element.track.duration_ms));
+        td3.appendChild(trackcontent);
+        td3.classList.add("track-duration");
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        document.getElementById("playlist-table").appendChild(tr);
+
+        //add second row with three colums
+        let tr1 = document.createElement("TR");
+        td1 = document.createElement("TD");
+        td2 = document.createElement("TD");
+        td3 = document.createElement("TD");
+        trackcontent = document.createTextNode(` `);
+        td1.appendChild(trackcontent);
+        trackcontent = document.createTextNode(`${element.track.album.artists[0].name} - ${element.track.album.name}`);
+        td2.appendChild(trackcontent);
+        td2.classList.add("artist-name");
+        trackcontent = document.createTextNode(` `);
+        td3.appendChild(trackcontent);
+        tr1.appendChild(td1);
+        tr1.appendChild(td2);
+        tr1.appendChild(td3);
+        document.getElementById("playlist-table").appendChild(tr1);
+    });
+}
+
+//Refresh Table of Playlist everytime you press a country on the map
+function refreshTablePlayList() {
+    let musicTable = document.getElementById("playlist-table");
+    while (musicTable.firstChild) {
+        musicTable.firstChild.remove();
+    }
+}
+//convert track duraction which is in milliseconnds to minutes:seconds format like this => mm:ss
+function trackDuration(milliseconds) {
+    let minutes = Math.floor(milliseconds / 60000);
+    let seconds = ((milliseconds % 60000) / 1000).toFixed(0);
+    return `${minutes}:${(seconds < 10 ? '0' : '')}${seconds}`;
+}
+
+//fetch image of top 50 playlist and display it
+function displayPlayListImage(tagElement, musicList) {
+    let playlistImage = document.getElementById(tagElement);
+    playlistImage.childNodes[0].src = musicList.images[0].url;
+}
+
+const onSpotifyWebPlaybackSDKReady = () => {
     const token = spotifyKey;
     const player = new Spotify.Player({
         name: 'Kasra Tabrizi',
@@ -96,20 +254,31 @@ window.onSpotifyWebPlaybackSDKReady = () => {
                 });
             });
         };
-        document.getElementById("buttonPlay").addEventListener("click", () => {
-            play({
-                playerInstance: player,
-                spotify_uri: 'spotify:track:1rgnBhdG2JDFTbYkYRZAku',
-            });
 
-        });
-        document.getElementById("buttonStop").addEventListener("click", () => {
-            pause({
-                playerInstance: player,
-                spotify_uri: 'spotify:track:1rgnBhdG2JDFTbYkYRZAku',
+        let playButton = document.querySelectorAll(".playstop-button");
+        for (let i = 0; i < playButton.length; i++) {
+            playButton[i].addEventListener('click', function() {
+                play({
+                    playerInstance: player,
+                    spotify_uri: `spotify:track:${playListId[i]}`,
+                });
             });
+        }
+        // document.getElementsByClassName("playstop-button")[0].addEventListener("click", () => {
+        //     console.log("clicked");
+        //     play({
+        //         playerInstance: player,
+        //         spotify_uri: 'spotify:track:1rgnBhdG2JDFTbYkYRZAku',
+        //     });
 
-        });
+        // });
+        // document.getElementById("buttonStop").addEventListener("click", () => {
+        //     pause({
+        //         playerInstance: player,
+        //         spotify_uri: 'spotify:track:1rgnBhdG2JDFTbYkYRZAku',
+        //     });
+
+        // });
 
     });
     //////////////////////////////////////////////////////////////////////////////////////////
@@ -117,158 +286,3 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     player.connect();
 
 };
-
-mapboxgl.accessToken = mapboxKey;
-var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [0, 40], // starting position
-    zoom: 2 // starting zoom
-});
-
-map.on('load', function() {
-    // Add a GeoJSON source containing the state polygons.
-    map.addSource('states', {
-        'type': 'geojson',
-        'data': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson'
-    });
-
-    // Add a layer showing the state polygons.
-    map.addLayer({
-        'id': 'states-layer',
-        'type': 'fill',
-        'source': 'states',
-        'paint': {
-            'fill-color': 'rgba(255, 255, 255, 0.1)',
-            'fill-outline-color': 'rgba(200, 100, 240, 1)'
-        }
-    });
-});
-//it will show the country you have clicked on the map
-map.on('click', function(e) {
-
-    //remove every child in the table to refresh the list
-    refreshTablePlayList();
-
-    var features = map.queryRenderedFeatures(e.point, {
-        layers: ['states-layer']
-    });
-    if (!features.length) {
-        return;
-    }
-    var feature = features[0];
-
-
-    console.log(feature.properties.name);
-    console.log(getCountryId(countryList, feature.properties.name));
-    countryID = getCountryId(countryList, feature.properties.name);
-    urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
-
-    fetch(urlPlaylist, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${spotifyKey}`,
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            credentials: "same-origin"
-        })
-        .then(res => res.json())
-        .then(musicList => {
-            console.log(musicList);
-            //Display image of the playlist
-            displayPlayListImage("playlist-image", musicList);
-            //show all 50 tracks
-            const allTracks = musicList.tracks.items;
-            createPlaylistTable(allTracks);
-        });
-});
-
-//return the country spotify ID by passing the countrylist array and the selected country fetched from the mapbox API
-function getCountryId(countryList, selectedCountry) {
-    for (let i = 0; i < countryList.length; i++) {
-        if (selectedCountry == countryList[i].country) {
-            return countryList[i].id;
-        }
-    }
-}
-
-//function that creates a table for the playlist with the track name, artist name, duration, play and pause button.
-function createPlaylistTable(allTracks) {
-    allTracks.forEach(element => {
-        // //get track name
-        // console.log(element.track.name);
-        // //get album name
-        // console.log(element.track.album.name);
-        // //get artist name
-        // console.log(element.track.album.artists[0].name);
-        // //get track id
-        // console.log(element.track.album.id);
-        // //get track duration
-        // console.log(element.track.duration_ms);
-        //add first row with three colums
-        let tr = document.createElement("TR");
-        let td1 = document.createElement("TD");
-        let td2 = document.createElement("TD");
-        let td3 = document.createElement("TD");
-        let playIcon = document.createElement("img");
-        playIcon.src = "https://img.icons8.com/material-rounded/24/000000/play.png";
-        let stopIcon = document.createElement("img");
-        stopIcon.src = "https://img.icons8.com/material-rounded/24/000000/stop.png";
-        // let trackcontent = document.createTextNode(`play stop images`);
-        // td1.appendChild(trackcontent);
-        td1.appendChild(playIcon);
-        td1.appendChild(stopIcon);
-        td1.classList.add("playstop-button");
-        trackcontent = document.createTextNode(element.track.name);
-        td2.appendChild(trackcontent);
-        td2.classList.add("track-title");
-        trackcontent = document.createTextNode(trackDuration(element.track.duration_ms));
-        td3.appendChild(trackcontent);
-        td3.classList.add("track-duration");
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
-        document.getElementById("playlist-table").appendChild(tr);
-
-        //add second row with three colums
-        let tr1 = document.createElement("TR");
-        td1 = document.createElement("TD");
-        td2 = document.createElement("TD");
-        td3 = document.createElement("TD");
-        trackcontent = document.createTextNode(` `);
-        td1.appendChild(trackcontent);
-        trackcontent = document.createTextNode(`${element.track.album.artists[0].name} - ${element.track.album.name}`);
-        td2.appendChild(trackcontent);
-        td2.classList.add("artist-name");
-        trackcontent = document.createTextNode(` `);
-        td3.appendChild(trackcontent);
-        tr1.appendChild(td1);
-        tr1.appendChild(td2);
-        tr1.appendChild(td3);
-        document.getElementById("playlist-table").appendChild(tr1);
-    });
-}
-
-// function wrapTitle(tagName, className, content) {
-
-// }
-//Refresh Table of Playlist everytime you press a country on the map
-function refreshTablePlayList() {
-    let musicTable = document.getElementById("playlist-table");
-    while (musicTable.firstChild) {
-        musicTable.firstChild.remove();
-    }
-}
-//convert track duraction which is in milliseconnds to minutes:seconds format like this => mm:ss
-function trackDuration(milliseconds) {
-    let minutes = Math.floor(milliseconds / 60000);
-    let seconds = ((milliseconds % 60000) / 1000).toFixed(0);
-    return `${minutes}:${(seconds < 10 ? '0' : '')}${seconds}`;
-}
-
-//fetch image of top 50 playlist and display it
-function displayPlayListImage(tagElement, musicList) {
-    let playlistImage = document.getElementById(tagElement);
-    playlistImage.childNodes[0].src = musicList.images[0].url;
-}

@@ -40,10 +40,6 @@ body {
   background-color: #f2f2f2;
 }
 
-#playlist-table tr:hover {
-  background-color: #ddd;
-}
-
 #playlist-table th {
   padding-top: 12px;
   padding-bottom: 12px;
