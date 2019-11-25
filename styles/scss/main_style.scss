@@ -56,6 +56,27 @@ body {
     #playlist-container {
         width: 100%;
         //border: 1px solid black;
+        .playIcon {
+            transition: 0.5s ease;
+            &:hover {
+                transform: scale(0.8);
+            }
+        }
+        .stopIcon {
+            transition: 0.5s ease;
+            &:hover {
+                transform: scale(0.8);
+            }
+        }
+        .playstop-button {
+            width: 50px;
+            word-wrap: none;
+        }
+        #bottom-container {
+            p {
+                text-align: center;
+            }
+        }
         #playlist-image {
             text-align: center;
             //border-radius: 5px;
@@ -70,9 +91,9 @@ body {
         #playlist-table th {
             //border: 1px solid #ddd;
             padding: 8px;
-            font-size: 0.7em;
+            font-size: 0.8em;
             font-weight: 700;
-            word-wrap: break-word;
+            word-wrap: none;
         }
         #playlist-table tr {
             transition: 0.2s ease-in;
