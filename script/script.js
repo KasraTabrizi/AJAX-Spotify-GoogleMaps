@@ -1,9 +1,19 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
 let playListId = [];
-const spotifyKey = `BQBjl0sjhU6T-M9eRSeGwX-PGxcA8eGeD3JdgBgTDFy1tnKhzPxZkmT4BUS_sUrdsXgldILoWFs2IsreGCcAnkXklkUFnBIzf_Gut5XSE8C4rE_3HP6K3Z0L4IPeChXkVnudv-P_8WtVMAwm7UNqMq2euWOo-wwTHWI`;
+const spotifyKey = `BQCJCyB5qi9fJLutOOI_z-rybNpec-hz6aE3Cxt-6knZbHs3xEqnG1XXsotFn4MDPFdpN8BuA8R3j_Sb35JOCXk3LpHKuBc2tVklMv_f_JOI9fQFsE79IW6jIiY-zU1E83wInSsDE935w1MRrIACCYNABjeLoEPuJ0A`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 mapboxgl.accessToken = mapboxKey;
+
+
+
+document.getElementById("mapAppearButton").addEventListener("click", function() {
+    document.getElementById("map").style.display = "block";
+});
+
+document.getElementById("mapdisappearButton").addEventListener("click", function() {
+    document.getElementById("map").style.display = "none";
+});
 
 var map = new mapboxgl.Map({
     container: 'map', // container id
@@ -73,6 +83,9 @@ map.on('click', function(e) {
         .then(onSpotifyWebPlaybackSDKReady());
 });
 
+
+
+
 //return the country spotify ID by passing the countrylist array and the selected country fetched from the mapbox API
 function getCountryId(countryList, selectedCountry) {
     for (let i = 0; i < countryList.length; i++) {
@@ -105,10 +118,10 @@ function createPlaylistTable(allTracks) {
         let td3 = document.createElement("TD");
         let playIcon = document.createElement("img");
         playIcon.classList.add("playIcon");
-        playIcon.src = "https://img.icons8.com/material-rounded/24/000000/play.png";
+        playIcon.src = "https://img.icons8.com/material-rounded/24/ffffff/play.png";
         let stopIcon = document.createElement("img");
         stopIcon.classList.add("stopIcon");
-        stopIcon.src = "https://img.icons8.com/material-rounded/24/000000/stop.png";
+        stopIcon.src = "https://img.icons8.com/material-rounded/24/ffffff/stop.png";
         // let trackcontent = document.createTextNode(`play stop images`);
         // td1.appendChild(trackcontent);
         td1.appendChild(playIcon);
