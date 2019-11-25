@@ -5,6 +5,8 @@ body {
     background: rgb(0, 0, 0);
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(20, 20, 22, 1) 90%, rgba(54, 61, 62, 1) 100%);
     color: rgba(255, 255, 255, 0.432);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -29,9 +31,6 @@ body {
                 }
             }
         }
-    }
-    #tbottom-container {
-        height: 100vh;
     }
     #map {
         position: absolute;
@@ -91,7 +90,11 @@ body {
         }
     }
     #footer {
-        color: white;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.5);
         text-align: center;
+        font-size: 0.75em;
     }
 }
