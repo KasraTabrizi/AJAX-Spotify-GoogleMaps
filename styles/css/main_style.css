@@ -82,5 +82,9 @@ body {
   background-color: #4CAF50;
   color: white;
 }
+#wrapper #footer {
+  color: white;
+  text-align: center;
+}
 
 /*# sourceMappingURL=main_style.css.map */
