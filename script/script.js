@@ -191,13 +191,6 @@ function trackDuration(milliseconds) {
 function displayPlayListImage(tagElement, musicList) {
     let playlistImage = document.getElementById(tagElement);
     playlistImage.childNodes[0].src = musicList.images[0].url;
-    // var vibrant = new Vibrant(musicList.images[0].url);
-    // var swatches = vibrant.swatches();
-    // for (var swatch in swatches) {
-    //     if (swatches.hasOwnProperty(swatch) && swatches[swatch]) {
-    //         console.log(swatch, swatches[swatch].getHex());
-    //     }
-    // }
 }
 
 const onSpotifyWebPlaybackSDKReady = () => {
