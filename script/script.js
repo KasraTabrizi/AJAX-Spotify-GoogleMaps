@@ -1,7 +1,7 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
 let playListId = [];
-const spotifyKey = `BQCJCyB5qi9fJLutOOI_z-rybNpec-hz6aE3Cxt-6knZbHs3xEqnG1XXsotFn4MDPFdpN8BuA8R3j_Sb35JOCXk3LpHKuBc2tVklMv_f_JOI9fQFsE79IW6jIiY-zU1E83wInSsDE935w1MRrIACCYNABjeLoEPuJ0A`;
+const spotifyKey = `BQChjAiYod57AId6oPboBT7yfwDOVxvjbIeeo4PfqRONJEkNNquDFiX4Z8EAg8LTpnrruVUaGC3N0qZhZE1w1tEP7m3QVKYi7XAb3b2qddzvV-tLKBcKKa82Cg3IDJ6cGRzgW_vSpRR07IjCXESieP0cwFCfOpU2YVI`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 mapboxgl.accessToken = mapboxKey;
 
@@ -99,6 +99,11 @@ function getCountryId(countryList, selectedCountry) {
 //function that creates a table for the playlist with the track name, artist name, duration, play and pause button.
 function createPlaylistTable(allTracks) {
     playListId = [];
+    let playListCounter = 1;
+    let trh = document.createElement("TR");
+    let th1 = document.createElement("TH");
+    let th2 = document.createElement("TH");
+    let th3 = document.createElement("TH");
     allTracks.forEach(element => {
         // //get track name
         // console.log(element.track.name);
@@ -113,6 +118,7 @@ function createPlaylistTable(allTracks) {
         // console.log(element.track.duration_ms);
         //add first row with three colums
         let tr = document.createElement("TR");
+        let tdn = document.createElement("TD");
         let td1 = document.createElement("TD");
         let td2 = document.createElement("TD");
         let td3 = document.createElement("TD");
@@ -124,6 +130,7 @@ function createPlaylistTable(allTracks) {
         stopIcon.src = "https://img.icons8.com/material-rounded/24/ffffff/stop.png";
         // let trackcontent = document.createTextNode(`play stop images`);
         // td1.appendChild(trackcontent);
+        tdn.textContent = playListCounter;
         td1.appendChild(playIcon);
         td1.appendChild(stopIcon);
         td1.classList.add("playstop-button");
@@ -133,6 +140,7 @@ function createPlaylistTable(allTracks) {
         trackcontent = document.createTextNode(trackDuration(element.track.duration_ms));
         td3.appendChild(trackcontent);
         td3.classList.add("track-duration");
+        tr.appendChild(tdn);
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);
@@ -140,6 +148,7 @@ function createPlaylistTable(allTracks) {
 
         //add second row with three colums
         let tr1 = document.createElement("TR");
+        tdn = document.createElement("TD");
         td1 = document.createElement("TD");
         td2 = document.createElement("TD");
         td3 = document.createElement("TD");
@@ -150,10 +159,12 @@ function createPlaylistTable(allTracks) {
         td2.classList.add("artist-name");
         trackcontent = document.createTextNode(` `);
         td3.appendChild(trackcontent);
+        tr1.appendChild(tdn);
         tr1.appendChild(td1);
         tr1.appendChild(td2);
         tr1.appendChild(td3);
         document.getElementById("playlist-table").appendChild(tr1);
+        playListCounter++;
     });
 }
 
