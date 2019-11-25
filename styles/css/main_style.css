@@ -28,12 +28,22 @@ body {
 }
 #wrapper #map {
   position: absolute;
-  top: 300px;
-  left: 500px;
-  z-index: 5;
-  width: 60%;
-  height: 500px;
-  display: none;
+  top: 15px;
+  right: 305px;
+  z-index: 2;
+  width: 40%;
+  height: 300px;
+}
+#wrapper #map #mapdisappearButton {
+  position: absolute;
+  right: 0;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  z-index: 3;
 }
 #wrapper #playlist-container {
   width: 100%;
@@ -48,8 +58,21 @@ body {
 }
 #wrapper #playlist-container #playlist-table td,
 #wrapper #playlist-container #playlist-table th {
-  border: 1px solid #ddd;
   padding: 8px;
+  font-size: 0.8em;
+}
+#wrapper #playlist-container #playlist-table tr {
+  transition: 0.5s ease-in;
+}
+#wrapper #playlist-container #playlist-table tr:hover {
+  background-color: rgba(221, 221, 221, 0.24);
+}
+#wrapper #playlist-container #playlist-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
 }
 
 /*# sourceMappingURL=main_style.css.map */

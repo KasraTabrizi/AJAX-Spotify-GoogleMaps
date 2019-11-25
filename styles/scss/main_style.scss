@@ -27,12 +27,24 @@ body {
     }
     #map {
         position: absolute;
-        top: 300px;
-        left: 500px;
-        z-index: 5;
-        width: 60%;
-        height: 500px;
-        display: none;
+        top: 15px;
+        right: 305px;
+        z-index: 2;
+        //display: none;
+        width: 40%;
+        height: 300px;
+        //border-radius: 20px;
+        #mapdisappearButton {
+            position: absolute;
+            right: 0;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            z-index: 3;
+        }
     }
     #playlist-container {
         width: 100%;
@@ -49,21 +61,23 @@ body {
         }
         #playlist-table td,
         #playlist-table th {
-            border: 1px solid #ddd;
+            //border: 1px solid #ddd;
             padding: 8px;
+            font-size: 0.8em;
         }
-        // #playlist-table tr:nth-child(even) {
-        //     background-color: #f2f2f2;
-        // }
-        // #playlist-table tr:hover {
-        //     background-color: #ddd;
-        // }
-        // #playlist-table th {
-        //     padding-top: 12px;
-        //     padding-bottom: 12px;
-        //     text-align: left;
-        //     background-color: #4CAF50;
-        //     color: white;
-        // }
+        #playlist-table tr {
+            transition: 0.5s ease-in;
+            &:hover {
+                background-color: rgba(221, 221, 221, 0.24);
+                //transform: scale(1.05);
+            }
+        }
+        #playlist-table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
     }
 }
