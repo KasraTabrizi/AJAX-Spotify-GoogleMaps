@@ -100,28 +100,39 @@ function getCountryId(countryList, selectedCountry) {
 function createPlaylistTable(allTracks) {
     playListId = [];
     let playListCounter = 1;
+    // add header row to table
     let trh = document.createElement("TR");
-    let th1 = document.createElement("TH");
-    let th2 = document.createElement("TH");
-    let th3 = document.createElement("TH");
+    let th_number = document.createElement("TH");
+    let th_playstop = document.createElement("TH");
+    let th_song = document.createElement("TH");
+    let th_artist = document.createElement("TH");
+    let th_album = document.createElement("TH");
+    let th_duration = document.createElement("TH");
+    th_number.textContent = "#";
+    th_song.textContent = "SONG";
+    th_artist.textContent = "ARTIST";
+    th_album.textContent = "ALBUM";
+    th_duration.textContent = "DURATION";
+    trh.appendChild(th_number);
+    trh.appendChild(th_playstop);
+    trh.appendChild(th_song);
+    trh.appendChild(th_artist);
+    trh.appendChild(th_album);
+    trh.appendChild(th_duration);
+    //add this to the table
+    document.getElementById("playlist-table").appendChild(trh);
+    //Add the data to the table on each row
     allTracks.forEach(element => {
-        // //get track name
-        // console.log(element.track.name);
-        // //get album name
-        // console.log(element.track.album.name);
-        // //get artist name
-        // console.log(element.track.album.artists[0].name);
-        // //get track id
-        // console.log(element.track.album.id);
+
         playListId.push(element.track.id);
-        // //get track duration
-        // console.log(element.track.duration_ms);
-        //add first row with three colums
+
         let tr = document.createElement("TR");
         let tdn = document.createElement("TD");
-        let td1 = document.createElement("TD");
-        let td2 = document.createElement("TD");
-        let td3 = document.createElement("TD");
+        let td_playStop = document.createElement("TD");
+        let td_song = document.createElement("TD");
+        let td_artist = document.createElement("TD");
+        let td_album = document.createElement("TD");
+        let td_dur = document.createElement("TD");
         let playIcon = document.createElement("img");
         playIcon.classList.add("playIcon");
         playIcon.src = "https://img.icons8.com/material-rounded/24/ffffff/play.png";
@@ -129,41 +140,36 @@ function createPlaylistTable(allTracks) {
         stopIcon.classList.add("stopIcon");
         stopIcon.src = "https://img.icons8.com/material-rounded/24/ffffff/stop.png";
         // let trackcontent = document.createTextNode(`play stop images`);
-        // td1.appendChild(trackcontent);
+        // td_playStop.appendChild(trackcontent);
         tdn.textContent = playListCounter;
-        td1.appendChild(playIcon);
-        td1.appendChild(stopIcon);
-        td1.classList.add("playstop-button");
+        td_playStop.appendChild(playIcon);
+        td_playStop.appendChild(stopIcon);
+        td_playStop.classList.add("playstop-button");
+        //create data for column song title
         trackcontent = document.createTextNode(element.track.name);
-        td2.appendChild(trackcontent);
-        td2.classList.add("track-title");
+        td_song.appendChild(trackcontent);
+        td_song.classList.add("track-title");
+        //create data for column artist name
+        artistname = document.createTextNode(element.track.album.artists[0].name);
+        td_artist.appendChild(artistname);
+        td_artist.classList.add("artist-name");
+        // //create data for column album name
+        albumname = document.createTextNode(element.track.album.name);
+        td_album.appendChild(albumname);
+        td_album.classList.add("album-name");
+        //create data for column track duration
         trackcontent = document.createTextNode(trackDuration(element.track.duration_ms));
-        td3.appendChild(trackcontent);
-        td3.classList.add("track-duration");
+        td_dur.appendChild(trackcontent);
+        td_dur.classList.add("track-duration");
+        //append everything to the row
         tr.appendChild(tdn);
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
+        tr.appendChild(td_playStop);
+        tr.appendChild(td_song);
+        tr.appendChild(td_artist);
+        tr.appendChild(td_album);
+        tr.appendChild(td_dur);
+        //add this to the table
         document.getElementById("playlist-table").appendChild(tr);
-
-        //add second row with three colums
-        let tr1 = document.createElement("TR");
-        tdn = document.createElement("TD");
-        td1 = document.createElement("TD");
-        td2 = document.createElement("TD");
-        td3 = document.createElement("TD");
-        trackcontent = document.createTextNode(` `);
-        td1.appendChild(trackcontent);
-        trackcontent = document.createTextNode(`${element.track.album.artists[0].name} - ${element.track.album.name}`);
-        td2.appendChild(trackcontent);
-        td2.classList.add("artist-name");
-        trackcontent = document.createTextNode(` `);
-        td3.appendChild(trackcontent);
-        tr1.appendChild(tdn);
-        tr1.appendChild(td1);
-        tr1.appendChild(td2);
-        tr1.appendChild(td3);
-        document.getElementById("playlist-table").appendChild(tr1);
         playListCounter++;
     });
 }
