@@ -1,7 +1,7 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
 let playListId = [];
-const spotifyKey = `BQAgx57Ms3O48biJE0HVVAorPH59KmEWOmkwb0TS2M_hS718bzDckrg-A38ri7MlFuGo51Ek9XzQGRCCIfTnoqa-kUSVUWmTlFwJZuoGdxOvTDJB6A1o0_Jo0ZzSNLB4rxa-wREU-g_9DP1dPwXlQai7S6F2RKqgr0s`;
+const spotifyKey = `BQAVCmIo1OUDTvKXteMgf2Q1atBvuCkuDGLRbDK7_UbdPvRojSlInHWxbk4T0YRnNPm49ln4wxvGN2q9L8UYglhNLa1wKEZ5d5vYle_XT2NXrdKLEoVUUyc12EX94BpnbeHVSAWYUDdhrV29rAvPWjH6xAWC2xo4L9k`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 mapboxgl.accessToken = mapboxKey;
 
@@ -153,7 +153,7 @@ function createPlaylistTable(allTracks) {
         td_artist.appendChild(artistname);
         td_artist.classList.add("artist-name");
         // //create data for column album name
-        albumname = document.createTextNode(element.track.album.name);
+        albumname = document.createTextNode(element.track.album.name.slice(0, 30));
         td_album.appendChild(albumname);
         td_album.classList.add("album-name");
         //create data for column track duration
