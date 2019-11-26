@@ -52,13 +52,19 @@ body {
 #wrapper #map #mapdisappearButton {
   position: absolute;
   right: 0;
+  letter-spacing: 2px;
+  border-bottom-left-radius: 15px;
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4CAF50;
+  background-color: rgba(76, 175, 79, 0.5);
   color: white;
   border: none;
   z-index: 3;
+  transition: 0.2s ease-in-out;
+}
+#wrapper #map #mapdisappearButton:hover {
+  background-color: #4CAF50;
 }
 #wrapper #playlist-container {
   width: 100%;
