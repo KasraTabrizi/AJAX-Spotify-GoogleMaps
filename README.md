@@ -13,3 +13,4 @@
 4. you can headers to your fetch. Some API's require you to send header info together token key and link to the server
 5. how to delete every child in a parent (see line 201 - 202)
 6. how to make a div appear/hide on/from the screen using the display: none and display: block;
+7. token scope
