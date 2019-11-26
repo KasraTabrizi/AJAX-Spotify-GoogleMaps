@@ -1,12 +1,21 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
 let playListId = [];
-const spotifyKey = `BQAse1tTIUktYid7JD_KpAS-QgRPG2cEYMfhAqy8cEnJSjeXoffy_nnYNEB_KlK42OuZNYOzxnUKcOz-2ntyxt4j2d9agNl9HP17dWOVznGPO7W8yrMcWeVO-MCHnXdqNWVoqrSlrYNG2sL_IqLV0ENZ0MgYem9PqQQ`;
+const spotifyKey = `BQCL4AZ6kYZfjAsCH7_6gLdyaoB-9iaJIII21Tn3n3q5qYi_6a2JACnrpMUZB26UuPHsb8ygbwMlvKUsjuylf0etc-UKqmz-oqiWy39cYsMM_CMqWd-7HpnqAmq5u7T4tIagYc3HLxaCvTJR76TpsWwTaY1Ag2EKeWA`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
+const Oauth = "https://accounts.spotify.com/authorize?client_id=edb6db7c1c604795b872fe40255d52fc&redirect_uri=http:%2F%2F127.0.0.1:5500%2Findex.html&scope=user-read-private%20user-read-email&response_type=token&state=123";
 mapboxgl.accessToken = mapboxKey;
 
+// document.getElementById("loginbutton").addEventListener("click", function() {
+//     window.open(Oauth);
+// });
 
+// let params = new URLSearchParams(document.location.hash);
+// let hash = params.get("#access_token");
+// spotifyKey = hash;
+// console.log(hash);
 // the following two event handlers will make the map appear and disappear
+
 document.getElementById("mapAppearButton").addEventListener("click", function() {
     document.getElementById("map").style.display = "block";
 });
@@ -75,16 +84,16 @@ map.on('click', function(e) {
         })
         .then(res => res.json())
         .then(musicList => {
-            console.log(musicList);
+            //console.log(musicList);
             //Display image of the playlist
             displayPlayListImage("playlist-image", musicList);
             //change title of place
-            console.log(musicList.name);
+            //console.log(musicList.name);
             document.getElementById("playlist-title").innerHTML = musicList.name;
             //show all 50 tracks
             const allTracks = musicList.tracks.items;
             createPlaylistTable(allTracks);
-            console.log(playListId);
+            //console.log(playListId);
         })
         .then(onSpotifyWebPlaybackSDKReady());
 });
