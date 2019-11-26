@@ -25,6 +25,10 @@ body {
 #wrapper #right-container {
   margin-left: 20px;
 }
+#wrapper #right-container h2 {
+  color: white;
+  font-size: 2em;
+}
 #wrapper #right-container #mapAppearButton img {
   transition: 0.3s ease-in;
 }

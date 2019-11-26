@@ -110,11 +110,13 @@ function createPlaylistTable(allTracks) {
     let th_artist = document.createElement("TH");
     let th_album = document.createElement("TH");
     let th_duration = document.createElement("TH");
+    let th_dur_image = document.createElement("img");
     th_number.textContent = "#";
     th_song.textContent = "SONG";
     th_artist.textContent = "ARTIST";
     th_album.textContent = "ALBUM";
-    th_duration.textContent = "DURATION";
+    th_dur_image.src = "https://img.icons8.com/android/16/ffffff/clock.png";
+    th_duration.appendChild(th_dur_image);
     trh.appendChild(th_number);
     trh.appendChild(th_playstop);
     trh.appendChild(th_song);
