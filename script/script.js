@@ -1,7 +1,7 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
 let playListId = [];
-const spotifyKey = `BQAPBJiVo8JLJvK51l7aE6TqtRnjcHRQfSnliFdiI4QzPYfiKDLkCjThiqyifSEOFFz9ts5en3ynjaSbeTqQwtWtZ1Q1tX31FP4X-WBjSd1LFkUYQ95eqlUsNbdQKgIBzn0YyTVJo1btIIt8X_Wl4aeXnbDLkufdyas`;
+const spotifyKey = `BQDGiRQZywrCYqIyI4ybArTakhDAIeieZuJPfRg5swHTSMr-BGz0J4WMvc9TZExt_ZM66R-JTciUB9dfuf_TulGbvRHLVIEZT5WIPv1sr2ucGyT0nIyrXNTzOQbgM8Zy2G3tGwfzlehdeR0O6ifmwCMf8N9b-bMb_pA`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 mapboxgl.accessToken = mapboxKey;
 
@@ -74,6 +74,9 @@ map.on('click', function(e) {
             console.log(musicList);
             //Display image of the playlist
             displayPlayListImage("playlist-image", musicList);
+            //change title of place
+            console.log(musicList.name);
+            document.getElementById("playlist-title").innerHTML = musicList.name;
             //show all 50 tracks
             const allTracks = musicList.tracks.items;
             createPlaylistTable(allTracks);
