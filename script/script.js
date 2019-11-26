@@ -6,6 +6,7 @@ const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm
 mapboxgl.accessToken = mapboxKey;
 
 
+// the following two event handlers will make the map appear and disappear
 document.getElementById("mapAppearButton").addEventListener("click", function() {
     document.getElementById("map").style.display = "block";
 });
@@ -14,6 +15,7 @@ document.getElementById("mapdisappearButton").addEventListener("click", function
     document.getElementById("map").style.display = "none";
 });
 
+//initialize mapbox
 var map = new mapboxgl.Map({
     container: 'map', // container id
     style: 'mapbox://styles/mapbox/streets-v11',
@@ -21,6 +23,7 @@ var map = new mapboxgl.Map({
     zoom: 2 // starting zoom
 });
 
+//load map
 map.on('load', function() {
     // Add a GeoJSON source containing the state polygons.
     map.addSource('states', {
@@ -39,6 +42,7 @@ map.on('load', function() {
         }
     });
 });
+
 //it will show the country you have clicked on the map
 map.on('click', function(e) {
 
