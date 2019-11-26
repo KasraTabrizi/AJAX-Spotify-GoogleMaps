@@ -51,7 +51,11 @@ map.on('load', function() {
     });
 });
 
-//it will show the country you have clicked on the map
+//it will retrieve the country you have clicked on the map,
+//it will then search which id the the country has
+//it will then fetch the top  playlist of that country
+//and display the list in a table 
+//at the end the spotify webplayer SDK will be called which responsible for playing each individual track
 map.on('click', function(e) {
 
     //remove every child in the table to refresh the list
