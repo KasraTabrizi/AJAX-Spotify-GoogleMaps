@@ -6,14 +6,13 @@ const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm
 const Oauth = "https://accounts.spotify.com/authorize?client_id=edb6db7c1c604795b872fe40255d52fc&redirect_uri=http:%2F%2F127.0.0.1:5500%2Findex.html&scope=user-read-private%20user-read-email%20streaming&response_type=token&state=123";
 mapboxgl.accessToken = mapboxKey;
 
+//go to spotify login page when pressed on login button
 document.getElementById("loginbutton").addEventListener("click", function() {
     window.open(Oauth);
 });
-
+//read the url link that the spotify provides which contains the token and put this in the spotifyKey variable
 let params = new URLSearchParams(document.location.hash);
-let hash = params.get("#access_token");
-spotifyKey = hash;
-console.log(hash);
+spotifyKey = params.get("#access_token");
 
 //the following two event handlers will make the map appear and disappear
 document.getElementById("mapAppearButton").addEventListener("click", function() {
