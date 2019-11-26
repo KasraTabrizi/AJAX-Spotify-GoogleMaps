@@ -1,21 +1,21 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
 let playListId = [];
-const spotifyKey = `BQCL4AZ6kYZfjAsCH7_6gLdyaoB-9iaJIII21Tn3n3q5qYi_6a2JACnrpMUZB26UuPHsb8ygbwMlvKUsjuylf0etc-UKqmz-oqiWy39cYsMM_CMqWd-7HpnqAmq5u7T4tIagYc3HLxaCvTJR76TpsWwTaY1Ag2EKeWA`;
+let spotifyKey = `BQBVJe3z0NUp5PrL_lL92AXlw-dZmjF33cKSriYCC0RQbjmrnUpK9cozwwEzjDU7TfaPsw8S-Dpk3f7XJq3Vip-8FppozLwabZE7OIjdnrqByRPrgcrz3Fn6-i3dInBrVG4-e6xZsIxi8h2HzCJfyTnuvZHWPAhDmYI`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
-const Oauth = "https://accounts.spotify.com/authorize?client_id=edb6db7c1c604795b872fe40255d52fc&redirect_uri=http:%2F%2F127.0.0.1:5500%2Findex.html&scope=user-read-private%20user-read-email&response_type=token&state=123";
+const Oauth = "https://accounts.spotify.com/authorize?client_id=edb6db7c1c604795b872fe40255d52fc&redirect_uri=http:%2F%2F127.0.0.1:5500%2Findex.html&scope=user-read-private%20user-read-email%20streaming&response_type=token&state=123";
 mapboxgl.accessToken = mapboxKey;
 
-// document.getElementById("loginbutton").addEventListener("click", function() {
-//     window.open(Oauth);
-// });
+document.getElementById("loginbutton").addEventListener("click", function() {
+    window.open(Oauth);
+});
 
-// let params = new URLSearchParams(document.location.hash);
-// let hash = params.get("#access_token");
-// spotifyKey = hash;
-// console.log(hash);
-// the following two event handlers will make the map appear and disappear
+let params = new URLSearchParams(document.location.hash);
+let hash = params.get("#access_token");
+spotifyKey = hash;
+console.log(hash);
 
+//the following two event handlers will make the map appear and disappear
 document.getElementById("mapAppearButton").addEventListener("click", function() {
     document.getElementById("map").style.display = "block";
 });

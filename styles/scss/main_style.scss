@@ -30,8 +30,28 @@ body {
             color: white;
             font-size: 2em;
         }
+        .buttonbox {
+            display: flex;
+            width: 45%;
+            justify-content: space-between;
+            padding-top: 20px;
+            //border: 1px solid white;
+        }
+        #loginbutton {
+            border: none;
+            background-color: rgb(76, 175, 79);
+            color: white;
+            font-size: 1.1em;
+            border-radius: 15px;
+            padding: 5px 15px 5px 15px;
+            margin-left: 10px;
+            transition: 0.3s ease-in;
+            &:hover {
+                background-color: rgb(51, 122, 54);
+                transform: scale(1.1);
+            }
+        }
         #mapAppearButton {
-            padding-top: 30px;
             img {
                 transition: 0.3s ease-in;
                 &:hover {
