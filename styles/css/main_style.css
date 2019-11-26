@@ -4,7 +4,7 @@ body {
   background-color: #121212;
   background: black;
   background: linear-gradient(0deg, black 0%, #141416 90%, #363d3e 100%);
-  color: rgba(255, 255, 255, 0.432);
+  color: rgba(255, 255, 255, 0.897);
   background-attachment: fixed;
   background-repeat: no-repeat;
   font-family: "Montserrat", sans-serif;
@@ -25,15 +25,21 @@ body {
 #wrapper #right-container {
   margin-left: 20px;
 }
+#wrapper #right-container p {
+  font-size: 0.8em;
+}
 #wrapper #right-container h2 {
   color: white;
   font-size: 2em;
+}
+#wrapper #right-container #mapAppearButton {
+  padding-top: 30px;
 }
 #wrapper #right-container #mapAppearButton img {
   transition: 0.3s ease-in;
 }
 #wrapper #right-container #mapAppearButton img:hover {
-  transform: scale(1.2);
+  transform: scale(1.2) rotate(15deg);
 }
 #wrapper #map {
   position: absolute;
@@ -88,7 +94,7 @@ body {
 #wrapper #playlist-container #playlist-table th {
   padding: 8px;
   font-size: 0.8em;
-  font-weight: 700;
+  font-weight: 500;
   word-wrap: none;
 }
 #wrapper #playlist-container #playlist-table tr {
@@ -101,8 +107,8 @@ body {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: rgba(76, 175, 79, 0.8);
-  color: white;
+  color: rgba(255, 255, 255, 0.5);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
 }
 #wrapper #footer {
   margin-top: 10px;

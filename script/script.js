@@ -1,7 +1,7 @@
 let countryID = ``;
 let urlPlaylist = `https://api.spotify.com/v1/playlists/${countryID}`;
 let playListId = [];
-const spotifyKey = `BQDGiRQZywrCYqIyI4ybArTakhDAIeieZuJPfRg5swHTSMr-BGz0J4WMvc9TZExt_ZM66R-JTciUB9dfuf_TulGbvRHLVIEZT5WIPv1sr2ucGyT0nIyrXNTzOQbgM8Zy2G3tGwfzlehdeR0O6ifmwCMf8N9b-bMb_pA`;
+const spotifyKey = `BQAwLIEpyknBi8upr7HSzN3slptq0oreulqzQHHwpHQxBQ8slAC3XgO0ek6Ox9-vjFSk390YLy8NGIig6UzcOV6qrNxHMMgAXY_nRaq26oF7dxPmMei-_Zg1mGu1HorLgLbVm0clWcqfZdt7ZW5E1JwZLMT1li_cNtc`;
 const mapboxKey = `pk.eyJ1Ijoia2FzcmF0YWJyaXppIiwiYSI6ImNrMzdmNGxhbTBhdmkzbHFlNm4zNzM1MXIifQ.NTIDE9lmvt_g4IY_U2Rw6w`;
 mapboxgl.accessToken = mapboxKey;
 
@@ -131,6 +131,7 @@ function createPlaylistTable(allTracks) {
         playListId.push(element.track.id);
 
         let tr = document.createElement("TR");
+        tr.classList.add("track-row");
         let tdn = document.createElement("TD");
         let td_playStop = document.createElement("TD");
         let td_song = document.createElement("TD");
@@ -323,6 +324,7 @@ function linkPlayToButtons(player, play) {
     let playButton = document.querySelectorAll(".playIcon");
     for (let i = 0; i < playButton.length; i++) {
         playButton[i].addEventListener('click', function() {
+            document.getElementsByClassName("track-row")[i].style = "background-color: rgba(76, 175, 79, 0.5); font-weight: bold;";
             play({
                 playerInstance: player,
                 spotify_uri: `spotify:track:${playListId[i]}`,
@@ -335,6 +337,7 @@ function linkStopToButtons(player, pause) {
     let stopButton = document.querySelectorAll(".stopIcon");
     for (let i = 0; i < stopButton.length; i++) {
         stopButton[i].addEventListener('click', function() {
+            document.getElementsByClassName("track-row")[i].style = "background-color: none";
             pause({
                 playerInstance: player,
                 spotify_uri: `spotify:track:${playListId[i]}`,

@@ -4,7 +4,7 @@ body {
     background-color: #121212;
     background: rgb(0, 0, 0);
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(20, 20, 22, 1) 90%, rgba(54, 61, 62, 1) 100%);
-    color: rgba(255, 255, 255, 0.432);
+    color: rgba(255, 255, 255, 0.897);
     background-attachment: fixed;
     background-repeat: no-repeat;
     font-family: 'Montserrat', sans-serif;
@@ -23,15 +23,19 @@ body {
     }
     #right-container {
         margin-left: 20px;
+        p {
+            font-size: 0.8em;
+        }
         h2 {
             color: white;
             font-size: 2em;
         }
         #mapAppearButton {
+            padding-top: 30px;
             img {
                 transition: 0.3s ease-in;
                 &:hover {
-                    transform: scale(1.2);
+                    transform: scale(1.2) rotate(15deg);
                 }
             }
         }
@@ -83,9 +87,7 @@ body {
         }
         #playlist-image {
             text-align: center;
-            //border-radius: 5px;
             overflow: hidden;
-            //border: 4px solid rgba(255, 255, 255, 0.829);
         }
         #playlist-table {
             border-collapse: collapse;
@@ -93,10 +95,9 @@ body {
         }
         #playlist-table td,
         #playlist-table th {
-            //border: 1px solid #ddd;
             padding: 8px;
             font-size: 0.8em;
-            font-weight: 700;
+            font-weight: 500;
             word-wrap: none;
         }
         #playlist-table tr {
@@ -110,8 +111,9 @@ body {
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;
-            background-color: rgba(76, 175, 79, 0.8);
-            color: white;
+            //background-color: rgba(76, 175, 79, 0.8);
+            color: rgba(255, 255, 255, 0.5);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
         }
     }
     #footer {
