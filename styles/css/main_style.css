@@ -105,6 +105,7 @@ body {
 }
 #wrapper #playlist-container #bottom-container p {
   text-align: center;
+  padding: 0 120px;
 }
 #wrapper #playlist-container #playlist-image {
   text-align: center;
