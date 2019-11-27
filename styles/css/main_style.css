@@ -63,6 +63,7 @@ body {
   top: 15px;
   right: 305px;
   z-index: 2;
+  visibility: hidden;
   width: 40%;
   height: 300px;
 }

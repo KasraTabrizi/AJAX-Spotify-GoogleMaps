@@ -17,6 +17,7 @@ spotifyKey = params.get("#access_token");
 //the following two event handlers will make the map appear and disappear
 document.getElementById("mapAppearButton").addEventListener("click", function() {
     document.getElementById("map").style.display = "block";
+    document.getElementById("map").style.visibility = "visible";
 });
 
 document.getElementById("mapdisappearButton").addEventListener("click", function() {
@@ -312,22 +313,6 @@ const onSpotifyWebPlaybackSDKReady = () => {
         //link the play and pause funcionality of spotify to the play and stop buttons
         linkPlayToButtons(player, play);
         linkStopToButtons(player, pause);
-
-        // document.getElementsByClassName("playstop-button")[0].addEventListener("click", () => {
-        //     console.log("clicked");
-        //     play({
-        //         playerInstance: player,
-        //         spotify_uri: 'spotify:track:1rgnBhdG2JDFTbYkYRZAku',
-        //     });
-
-        // });
-        // document.getElementById("buttonStop").addEventListener("click", () => {
-        //     pause({
-        //         playerInstance: player,
-        //         spotify_uri: 'spotify:track:1rgnBhdG2JDFTbYkYRZAku',
-        //     });
-
-        // });
 
     });
     //////////////////////////////////////////////////////////////////////////////////////////
