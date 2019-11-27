@@ -27,7 +27,7 @@ document.getElementById("mapdisappearButton").addEventListener("click", function
 //initialize mapbox
 var map = new mapboxgl.Map({
     container: 'map', // container id
-    style: 'mapbox://styles/mapbox/streets-v11',
+    style: 'mapbox://styles/kasratabrizi/ck3hd2zhi0xay1cp962r25qgk',
     center: [0, 40], // starting position
     zoom: 2 // starting zoom
 });
