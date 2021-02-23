@@ -1,5 +1,7 @@
 # AJAX-Spotify-GoogleMaps
 
+Play the top chart list of a country by selecting it on a worldmap.
+
 ## things I have learned in this project
 
 ### HTML
